@@ -4,11 +4,7 @@
     {
         static void Main(string[] args)
         {
-			// 1. feladat
-			// Konzolos alkalmazás létrehozása Bingo néven
 
-			// 3. feladat
-			// Játékosok beolvasása és eltárolása
 
 			List<BingoJatekos> jatekosok = new List<BingoJatekos>();
 
