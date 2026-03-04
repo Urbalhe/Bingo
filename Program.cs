@@ -24,6 +24,9 @@
 			}
 
 
+			Console.WriteLine("4. feladat");
+			Console.WriteLine($" emberek: {jatekosok.Count}");
+			
 
 		}
 	}
