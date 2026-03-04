@@ -4,30 +4,46 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Bingo
 {
-	internal class BingoJatekos
+
+	class BingoJatekos
 	{
-		string name;
-		int kartya;
+		
 
-		public BingoJatekos(string name, int kartya)
+		public string Nev { get; private set; }
+		private int?[,] kartya;
+		private bool[,] jelolve;
+
+		
+		public BingoJatekos(string fajlnev)
 		{
-			this.name = name;
-			this.kartya = kartya;
-		}
+			Nev = Path.GetFileNameWithoutExtension(fajlnev);
 
-		public string Name { get => name; set => name = value; }
-		public int Kartya { get => kartya; set => kartya = value; }
+			kartya = new int?[5, 5];
+			jelolve = new bool[5, 5];
 
-		public override string? ToString()
-		{
-			return $"{name} - {kartya}";
-			
-			
+			string[] sorok = File.ReadAllLines(fajlnev);
+
+			for (int i = 0; i < 5; i++)
+			{
+				string[] elemek = sorok[i].Split(';');
+
+				for (int j = 0; j < 5; j++)
+				{
+					if (elemek[j] == "X")
+					{
+						kartya[i, j] = null;
+						jelolve[i, j] = true; 
+					}
+					else
+					{
+						kartya[i, j] = int.Parse(elemek[j]);
+					}
+				}
+			}
 		}
 	}
-
-	
 }
